@@ -1,32 +1,35 @@
 import random
 import time
 
-def simulacion_continua():
-    capacidad = 10
-    ocupado = 0
-    libre = capacidad
-    
-    print("Simulacion simple")
-    print("-" * 30)
-    
-    for i in range(10):
-        print(f"\nNumero {i+1}:")
-        
-        # Salen 
-        salidas = random.randint(0, min(3, ocupado))
-        ocupado -= salidas
-        libre += salidas
-        
-        # Entran 
-        entradas = random.randint(0, min(3, libre))
-        ocupado += entradas
-        libre -= entradas
-        
-        # Mostrar estado
-        print(f"  Salidas: {salidas}, Entradas: {entradas}")
-        print(f"  Ocupado: {ocupado}, Libre: {libre}")
+libre = 10
+ocupado = 0
+
+print("Estado del sistema:")
+print("-" * 20)
+
+while True:
+    try:
+        if random.choice([True, False]):  
+            cambio = random.randint(-1, 1)
+            nuevo_ocupado = ocupado + cambio
+            if 0 <= nuevo_ocupado <= 10:
+                ocupado = nuevo_ocupado
+                if ocupado > 0:
+                    print("ocupado")
+                else:
+                    print("libre")
+        else:  
+            cambio = random.randint(-1, 1)
+            nuevo_libre = libre + cambio
+            if 0 <= nuevo_libre <= 10:
+                libre = nuevo_libre
+                if libre < 10:
+                    print("ocupado")
+                else:
+                    print("libre")
         
         time.sleep(0.5)
-
-if __name__ == "__main__":
-    simulacion_basica()
+        
+    except KeyboardInterrupt:
+        print("\nFin")
+        break
