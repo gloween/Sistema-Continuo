@@ -7,6 +7,10 @@ while True:
     try:
         if random.random() < 0.5:
             print("ocupado")
+            if random.random() < 0.1: 
+                print("SOBRECARGA")
+                print("Sistema detenido por sobrecarga")
+                break
         else:
             print("libre")
         
